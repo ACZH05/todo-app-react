@@ -10,15 +10,15 @@ function AddTodo() {
   return (
     <Container>
       <h1 className="my-3">Add Todo</h1>
-      <Form>
+      <Form onSubmit={(e) => e.preventDefault()}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label >Title</Form.Label>
-            <Form.Control type="email" value={title} placeholder="Enter the title" onChange={(e) => setTitle(e.target.value)}/>
+            <Form.Control type="text" value={title} placeholder="Enter the title" onChange={(e) => setTitle(e.target.value)} required/>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Description</Form.Label>
-            <Form.Control as="textarea" value={description} rows={3} onChange={(e) => setDescription(e.target.value)} />
+            <Form.Control as="textarea" value={description} rows={3} onChange={(e) => setDescription(e.target.value)} required />
         </Form.Group>
         <Form.Check type="checkbox" checked={completed} label="Mark as completed" onChange={(e) => setCompleted(e.target.checked)} />
         <Button type="submit" variant="primary" className="mt-3">Submit</Button>
