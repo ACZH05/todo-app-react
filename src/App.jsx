@@ -6,6 +6,7 @@ import ErrorPage from './pages/ErrorPage'
 import AddTodo from './pages/AddTodo';
 import useLocalStorage from 'use-local-storage'
 import { TodoContext } from './contexts/TodoContext';
+import EditTodo from './pages/EditTodo';
 
 function Layout() {
   return (
@@ -15,6 +16,7 @@ function Layout() {
           <Navbar.Brand href='/'>Todos</Navbar.Brand>
           <Nav className='me-auto'>
             <Nav.Link href='/add'>Add Todo</Nav.Link>
+            <Nav.Link href='/edit'>Edit Todo</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -32,6 +34,7 @@ function App() {
           <Route path='/' element={<Layout />}>
             <Route index element={<Home />}/>
             <Route path='add' element={<AddTodo />}/>
+            <Route path='edit' element={<EditTodo />}/>
             <Route path='*' element={<ErrorPage />}/>
           </Route>
         </Routes>
