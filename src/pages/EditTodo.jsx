@@ -13,6 +13,7 @@ function DisplayId({ todos }) {
         }
         
 function EditTodo() {
+    const [id, setId] = useState("")
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [completed, setCompleted] = useState(false)
@@ -23,6 +24,7 @@ function EditTodo() {
 
     function changeForm(e) {
         const result = todos.filter(todo => todo.id === parseInt(e.target.value))[0]
+        setId(result.id)
         setTitle(result.title)
         setDescription(result.description)
         setCompleted(result.completed)
@@ -30,7 +32,17 @@ function EditTodo() {
   return (
     <Container>
         <h1>Edit Todo</h1>
-      <Form>
+      <Form onSubmit={e => {
+        e.preventDefault()
+        let data = []
+        todos.forEach(todo => {
+            if (todo.id === id) data.push({...todo, title: title, description: description, completed: completed})
+            if (todo.id !== id) data.push(todo)
+        })
+        console.log(data)
+        setTodos(data)
+        navigate("/")
+      }}>
         <Form.Group>
             <Form.Label>ID</Form.Label>
             <Form.Select onChange={changeForm}>
