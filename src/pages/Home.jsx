@@ -2,6 +2,7 @@ import { Container } from "react-bootstrap"
 import { useContext } from 'react'
 import { Badge, Card, Col, Row } from 'react-bootstrap'
 import { TodoContext } from "../contexts/TodoContext"
+import { BsTrash3Fill } from 'react-icons/bs'
 
 function CardGroup({ todos }) {
     return todos.map((todo) => {
@@ -14,7 +15,10 @@ function CardGroup({ todos }) {
                     <Card.Body>
                         <Card.Title>{todo.title}</Card.Title>
                         <Card.Text>{ todo.description }</Card.Text>
-                        <Badge bg={bg}>{!completed && "Not"} Completed</Badge>
+                        <span className="d-flex justify-content-between">
+                          <Badge bg={bg} className="p-2">{!completed && "Not"} Completed</Badge>
+                          <BsTrash3Fill id={ todo.id } className="text-danger fs-4" role="button" onClick={(e) => console.log(e.currentTarget.id)} />
+                        </span>
                     </Card.Body>
                 </Card>
             </Col>
